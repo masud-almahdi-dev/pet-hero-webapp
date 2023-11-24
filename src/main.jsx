@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider} from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
+import Landing from './home';
 const petrouter = createBrowserRouter([{
     path: "/",
-    element: <h1 className='bg-red-300'>Hello!</h1>,
+    element: <Landing></Landing>,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
