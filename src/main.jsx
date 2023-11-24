@@ -10,8 +10,8 @@ const petrouter = createBrowserRouter([{
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <RouterProvider router={petrouter}>
     </RouterProvider>
-  </React.StrictMode>,
+  //</React.StrictMode>,
 )
