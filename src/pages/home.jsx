@@ -1,0 +1,10 @@
+const Home = () => {
+    return ( 
+        <div className="bg-purple-700 w-full">
+            
+            Lorem ipsum<br/> dolor sit amet cons<br/>ectetur adipisicing elit. Perspiciatis, numquam? Error, quam ani<br/>mi soluta quibusdam qu<br/>idem eveniet quo volu<br/>ptates sequi, accusant<br/>ium perferendis ipsam recusandae illum accusamus vo<br/>luptatum ut id ullam, dignissimos do<br/>lore eos! Quam unde minima necessitatibus quisquam possimus officiis animi, vitae labo<br/>re placeat a reiciendis doloremque cupiditate perspiciat<br/>is porro quod voluptatibu<br/>s rerum, vero eos assumenda, saepe beatae. Eveniet minus ducimus atque d<br/>ebitis labor<br/>iosam cum mo<br/>litia, quaerat suscipit amet dignissimos tempore enim cumque odio <br/>, provident adipisci. Pl<br/>ac<br/>eat repudiandae porro com<br/>modi in tenetur et officia dicta, ut aut<br/>em quas, fugit minus id bland<br/>iti<br/>is asperiores soluta doloremque dolor nemo quod dolore magnam! Odi<br/>t ratione sit ipsum maiores q<br/>uasi quibusdam<br/> non laudantium nulla obcaecati rem possimus accusamus nisi id accusantium, qui fuga deserunt asperiores,<br/> rerum<br/> cumque. Obcaecati doloremque velit debitis nulla, labo<br/>iosam eos similique. Quod repellendus et qui sunt, sapiente tenetur itaque nis<br/>! Quidem, <br/>molestias in. Nisi tenetur quasi repudiandae vero nostru<br/>m odio praesentium quae, aperiam earum doloremque consequuntur s<br/>int, rerum dolorum pers<br/>piciatis nihil molestiae exercitationem cumque itaque. Mini<br/>ma laborum nobis, totam doloribus repellat autem ipsa c<br/>onsectetur dignissimos, nemo ipsum delectus saepe vitae corrupti vel veniam quis in dolor tempora, rerum veritatis consequatur ipsam? Itaque, obcaecati? Architecto nulla reiciendis vero corru<br/>pti veniam!
+        </div>
+     );
+}
+ 
+export default Home;
