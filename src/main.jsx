@@ -9,8 +9,16 @@ import DonationListing from './pages/donationlisting';
 import PetListing from './pages/petlisting';
 import DonationDetails from './pages/donationdetails';
 import PetDetails from './pages/petdetails';
-import DashboardUser from './pages/dashboarduser';
-import DashboardAdmin from './pages/dashboardadm';
+import Dashboard from './pages/dashboard';
+import AddPet from './pages/dashboard/addpet';
+import MyAddedPets from './pages/dashboard/myaddedpets';
+import CreateCampaign from './pages/dashboard/createcampaign';
+import MyCampaigns from './pages/dashboard/mycampaigns';
+import MyDonations from './pages/dashboard/mydonations';
+import AdoptionRequests from './pages/dashboard/adoptionreq';
+import Users from './pages/dashboard/admin/users';
+import AllPets from './pages/dashboard/admin/allpets';
+import AllDonations from './pages/dashboard/admin/alldonations';
 const petrouter = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
@@ -36,12 +44,50 @@ const petrouter = createBrowserRouter([{
         element: <PetDetails/>,
       },
       {
-        path: "/dashboarduser",
-        element: <DashboardUser/>,
-      },
-      {
-        path: "/dashboardadm",
-        element: <DashboardAdmin/>,
+        path: "/dashboard",
+        element: <Dashboard/>,
+        children:[
+          {
+            path: "/dashboard/",
+            element: <div>Hello</div>,
+          },
+          {
+            path: "/dashboard/addpet",
+            element: <AddPet/>,
+          },
+          {
+            path: "/dashboard/myaddedpets",
+            element: <MyAddedPets/>,
+          },
+          {
+            path: "/dashboard/createcampaign",
+            element: <CreateCampaign/>,
+          },
+          {
+            path: "/dashboard/mycampaigns",
+            element: <MyCampaigns/>,
+          },
+          {
+            path: "/dashboard/mydonations",
+            element: <MyDonations/>,
+          },
+          {
+            path: "/dashboard/adoptionrequests",
+            element: <AdoptionRequests/>,
+          },
+          {
+            path: "/dashboard/users",
+            element: <Users/>,
+          },
+          {
+            path: "/dashboard/allpets",
+            element: <AllPets/>,
+          },
+          {
+            path: "/dashboard/alldonations",
+            element: <AllDonations/>,
+          },
+        ]
       },
     ]
   },
