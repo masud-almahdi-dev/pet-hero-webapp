@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
     const [menuopen,setmenuopen] = useState(false)
     return ( 
-        <div className="w-full bg-pink-700 h-24 lg:h-min flex sticky top-0 p-4 text-center justify-between box-border lg:items-center items-start flex-wrap z-20">
-            <div className="flex lg:flex-[1] flex-col bg-pink-800 rounded-lg p-2">
+        <div className="w-full bg-slate-700 h-24 lg:h-min flex sticky top-0 p-4 text-center justify-between box-border lg:items-center items-start flex-wrap z-20">
+            <div className="flex lg:flex-[1] flex-col bg-slate-800 rounded-lg p-2">
                 <div className="items-center gap-4 lg:flex hidden">
                 <img src="/logo.svg" alt="" className="rounded-lg w-20" />
                 <h2 className="text-lg">PET HERO</h2>
@@ -26,7 +26,7 @@ const Navbar = () => {
                 <NavLink to="/donations" className="navlinks">Donation campaigns</NavLink>
                 <NavLink to="/dashboarduser" className="navlinks">Dashboard</NavLink>
             </div>
-            <div className="flex lg:flex-[1] px-4 justify-end bg-pink-700 rounded-lg">
+            <div className="flex lg:flex-[1] px-4 justify-end bg-slate-700 rounded-lg">
                 <div className="flex flex-col text-end justify-center pr-2">
                 <h2 className="text-lg">User Name</h2>
                 <h4 className="text-sm">useremail@email.com</h4>
