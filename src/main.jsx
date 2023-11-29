@@ -20,6 +20,7 @@ import Users from './pages/dashboard/admin/users';
 import AllPets from './pages/dashboard/admin/allpets';
 import AllDonations from './pages/dashboard/admin/alldonations';
 import DashboardMain from './pages/dashboard/dashboardmain';
+import { AuthProvider, UserDataProvider } from './auth/Auth';
 const petrouter = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
@@ -95,7 +96,11 @@ const petrouter = createBrowserRouter([{
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   //<React.StrictMode>
-    <RouterProvider router={petrouter}>
-    </RouterProvider>
+    <AuthProvider>
+      <UserDataProvider>
+        <RouterProvider router={petrouter}>
+        </RouterProvider>
+      </UserDataProvider>
+    </AuthProvider>
   //</React.StrictMode>,
 )

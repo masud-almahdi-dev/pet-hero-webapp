@@ -16,7 +16,7 @@ const Navbar = () => {
                 <NavLink to="/" className="navlinks-dropdown">Home</NavLink>
                 <NavLink to="/pets" className="navlinks-dropdown">Pet Listing</NavLink>
                 <NavLink to="/donations" className="navlinks-dropdown">Donation campaigns</NavLink>
-                <NavLink to="/dashboarduser" className="navlinks-dropdown">Dashboard</NavLink></div>
+                <NavLink to="/dashboard" className="navlinks-dropdown">Dashboard</NavLink></div>
                 }
             </div>
             <div className="justify-center items-center xl:flex-[3] lg:flex-[2] hidden lg:flex flex-wrap">
@@ -24,7 +24,7 @@ const Navbar = () => {
                 <NavLink to="/" className="navlinks">Home</NavLink>
                 <NavLink to="/pets" className="navlinks">Pet Listing</NavLink>
                 <NavLink to="/donations" className="navlinks">Donation campaigns</NavLink>
-                <NavLink to="/dashboarduser" className="navlinks">Dashboard</NavLink>
+                <NavLink to="/dashboard" className="navlinks">Dashboard</NavLink>
             </div>
             <div className="flex lg:flex-[1] px-4 justify-end bg-slate-700 rounded-lg">
                 <div className="flex flex-col text-end justify-center pr-2">
