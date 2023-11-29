@@ -13,20 +13,18 @@ const Navbar = () => {
                 <button className=" border-4 p-2 lg:hidden border-white bg-black rounded-lg" onClick={()=>{setmenuopen(!menuopen)}}>{menuopen? "close":"="}</button>
                 { menuopen &&
                 <div className="lg:hidden flex flex-col w-min">
-                <NavLink className="navlinks-dropdown">Home</NavLink>
-                <NavLink className="navlinks-dropdown">Pet Listing</NavLink>
-                <NavLink className="navlinks-dropdown">Pet Details</NavLink>
-                <NavLink className="navlinks-dropdown">Donation campaigns</NavLink>
-                <NavLink className="navlinks-dropdown">Donation details</NavLink>
-                <NavLink className="navlinks-dropdown">Dashboard</NavLink></div>
+                <NavLink to="/" className="navlinks-dropdown">Home</NavLink>
+                <NavLink to="/pets" className="navlinks-dropdown">Pet Listing</NavLink>
+                <NavLink to="/donations" className="navlinks-dropdown">Donation campaigns</NavLink>
+                <NavLink to="/dashboarduser" className="navlinks-dropdown">Dashboard</NavLink></div>
                 }
             </div>
             <div className="justify-center items-center xl:flex-[3] lg:flex-[2] hidden lg:flex flex-wrap">
-                <NavLink className="navlinks">Pet Listing</NavLink>
-                <NavLink className="navlinks">Pet Details</NavLink>
-                <NavLink className="navlinks">Donation campaigns</NavLink>
-                <NavLink className="navlinks">Donation details</NavLink>
-                <NavLink className="navlinks">Dashboard</NavLink>
+                <button className="bg-white rounded-lg h-full hover:scale-75 transition-all"><img src="/DM.png" className="w-10 object-cover" alt="" /></button>
+                <NavLink to="/" className="navlinks">Home</NavLink>
+                <NavLink to="/pets" className="navlinks">Pet Listing</NavLink>
+                <NavLink to="/donations" className="navlinks">Donation campaigns</NavLink>
+                <NavLink to="/dashboarduser" className="navlinks">Dashboard</NavLink>
             </div>
             <div className="flex lg:flex-[1] px-4 justify-end bg-pink-700 rounded-lg">
                 <div className="flex flex-col text-end justify-center pr-2">
