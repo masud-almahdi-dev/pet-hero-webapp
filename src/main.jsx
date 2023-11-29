@@ -19,6 +19,7 @@ import AdoptionRequests from './pages/dashboard/adoptionreq';
 import Users from './pages/dashboard/admin/users';
 import AllPets from './pages/dashboard/admin/allpets';
 import AllDonations from './pages/dashboard/admin/alldonations';
+import DashboardMain from './pages/dashboard/dashboardmain';
 const petrouter = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
@@ -49,7 +50,7 @@ const petrouter = createBrowserRouter([{
         children:[
           {
             path: "/dashboard/",
-            element: <div>Hello</div>,
+            element: <DashboardMain/>,
           },
           {
             path: "/dashboard/addpet",
@@ -76,15 +77,15 @@ const petrouter = createBrowserRouter([{
             element: <AdoptionRequests/>,
           },
           {
-            path: "/dashboard/users",
+            path: "/dashboard/admin/users",
             element: <Users/>,
           },
           {
-            path: "/dashboard/allpets",
+            path: "/dashboard/admin/allpets",
             element: <AllPets/>,
           },
           {
-            path: "/dashboard/alldonations",
+            path: "/dashboard/admin/alldonations",
             element: <AllDonations/>,
           },
         ]
