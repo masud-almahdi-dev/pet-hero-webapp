@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { RouterProvider} from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from './layout';
@@ -21,6 +22,8 @@ import AllPets from './pages/dashboard/admin/allpets';
 import AllDonations from './pages/dashboard/admin/alldonations';
 import DashboardMain from './pages/dashboard/dashboardmain';
 import { AuthProvider, UserDataProvider } from './auth/Auth';
+import AuthPage from './pages/authpage';
+
 const petrouter = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
@@ -28,6 +31,14 @@ const petrouter = createBrowserRouter([{
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <AuthPage></AuthPage>
+      },
+      {
+        path: "/signup",
+        element: <AuthPage></AuthPage>
       },
       {
         path: "/donations",
