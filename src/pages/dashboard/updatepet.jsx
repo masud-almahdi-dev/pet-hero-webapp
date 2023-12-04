@@ -8,7 +8,7 @@ const UpdatePet = () => {
     const [categories,setcategories] = useState([])
     const [petdata, setpetdata] = useState(null)
     const axiosSecure = useAxiosSecure()
-    const adderform = useFormik({
+    const updaterform = useFormik({
         initialValues: { name: '', location: '', age: '0', picture: '', description: '', longdetails: '' },
         onSubmit: values => { 
             let payload = {name: values.name,
@@ -46,12 +46,12 @@ const UpdatePet = () => {
     }, [location])
     useEffect(()=>{
         if(petdata?._id){
-            adderform.values.name = petdata.name
-            adderform.values.location = petdata.location
-            adderform.values.age = petdata.age
-            adderform.values.picture = petdata.image
-            adderform.values.description = petdata.description
-            adderform.values.longdetails = petdata.longdetails
+            updaterform.values.name = petdata.name
+            updaterform.values.location = petdata.location
+            updaterform.values.age = petdata.age
+            updaterform.values.picture = petdata.image
+            updaterform.values.description = petdata.description
+            updaterform.values.longdetails = petdata.longdetails
             setSelectedOption(petdata.category)
         }
     },[petdata])
@@ -64,20 +64,20 @@ const UpdatePet = () => {
         <div>
             <div className="text-white p-6 md:p-10 items-center flex flex-col gap-10">
                 Update Pet
-                <form onSubmit={adderform.handleSubmit} id="updatepetform" className="flex flex-col w-full items-center gap-10">
+                <form onSubmit={updaterform.handleSubmit} id="updatepetform" className="flex flex-col w-full items-center gap-10">
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="name">NAME</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="name" name="name" onChange={adderform.handleChange} value={adderform.values.name} />
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="name" name="name" onChange={updaterform.handleChange} value={updaterform.values.name} />
                         </div>
-                        {adderform.errors.name ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.name}</div>:null}
+                        {updaterform.errors.name ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.name}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="picture">PICTURE</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="picture" name="picture" onChange={adderform.handleChange} value={adderform.values.picture} />
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="picture" name="picture" onChange={updaterform.handleChange} value={updaterform.values.picture} />
                         </div>
-                        {adderform.errors.picture ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.picture}</div>:null}
+                        {updaterform.errors.picture ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.picture}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
@@ -93,32 +93,32 @@ const UpdatePet = () => {
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="age">AGE (year)</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="number" min="0" id="age" name="age" onChange={adderform.handleChange} value={adderform.values.age} />
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="number" min="0" id="age" name="age" onChange={updaterform.handleChange} value={updaterform.values.age} />
                         </div>
-                        {adderform.errors.age ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.age}</div>:null}
+                        {updaterform.errors.age ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.age}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="location">LOCATION</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="location" name="location" onChange={adderform.handleChange} value={adderform.values.location} />
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="location" name="location" onChange={updaterform.handleChange} value={updaterform.values.location} />
                         </div>
-                        {adderform.errors.location ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.location}</div>:null}
+                        {updaterform.errors.location ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.location}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="description">DESCRIPTION</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="description" name="description" onChange={adderform.handleChange} value={adderform.values.description} />
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="description" name="description" onChange={updaterform.handleChange} value={updaterform.values.description} />
                         </div>
-                        {adderform.errors.description ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.description}</div>:null}
+                        {updaterform.errors.description ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.description}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="longdetails">LONG DESC.</label>
-                            <textarea className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" id="longdetails" name="longdetails" onChange={adderform.handleChange} value={adderform.values.longdetails} />
+                            <textarea className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" id="longdetails" name="longdetails" onChange={updaterform.handleChange} value={updaterform.values.longdetails} />
                         </div>
-                        {adderform.errors.longdetails ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.longdetails}</div>:null}
+                        {updaterform.errors.longdetails ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{updaterform.errors.longdetails}</div>:null}
                     </div>
-                    <button className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-green-700 transition-all" type="submit">ADD + </button>
+                    <button className="bg-green-600 px-4 py-2 text-black rounded-lg hover:bg-orange-300 transition-all" type="submit">UPDATE</button>
                 </form>
                 <ToastContainer />
             </div>

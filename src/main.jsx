@@ -24,6 +24,7 @@ import DashboardMain from './pages/dashboard/dashboardmain';
 import { AuthProvider, UserDataProvider } from './auth/Auth';
 import AuthPage from './pages/authpage';
 import UpdatePet from './pages/dashboard/updatepet';
+import UpdateDonation from './pages/dashboard/updatedonation';
 
 const petrouter = createBrowserRouter([{
     path: "/",
@@ -80,6 +81,10 @@ const petrouter = createBrowserRouter([{
           {
             path: "/dashboard/createcampaign",
             element: <CreateCampaign/>,
+          },
+          {
+            path: "/dashboard/updatedonation/:id",
+            element: <UpdateDonation/>,
           },
           {
             path: "/dashboard/mycampaigns",
