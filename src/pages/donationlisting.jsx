@@ -20,7 +20,7 @@ const DonationListing = () => {
                 {
                     campaigns.map((i,index)=>{
                         return <div key={index} className="flex flex-col rounded-lg overflow-hidden bg-slate-500 justify-between h-full">
-                                <img src={i.image || "/cat1.jpg"} className="object-cover aspect-video" alt="" />
+                                <img src={i.image || "https://i.ibb.co/Rhgbz8B/8f7e9477-4be6-45ae-aa3d-ae4303f8104d.jpg"} className="object-cover aspect-video" alt="" />
                                 <h3 className="text-xl text-orange-300 px-4 py-2">{i.name}</h3>
                                 <h4 className="text-xs px-4 py-2 font-semibold">Max: {i.max}</h4>
                                 <h4 className="text-xs px-4 py-2 italic font-semibold">Donated Amount: {i.amount}</h4>
