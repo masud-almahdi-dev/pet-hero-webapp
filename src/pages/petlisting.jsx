@@ -90,17 +90,17 @@ const PetListing = () => {
             </div>
             {/* Date Descending order */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:grid-cols-3 p-6">
                 {
                     pets.map((i, index) => {
-                        return <div key={index} className="flex flex-col justify-between h-full">
-                            <img src="/cat1.jpg" className="object-cover" alt="" />
-                            <h3 className="text-xl">{i.name}</h3>
-                            <h4>{i.age}</h4>
-                            <h4 className="text-sm italic font-semibold">{i.location}</h4>
-                            <h4 className="text-sm italic">{i.submitDate}</h4>
-                            <h4 className="text-sm italic">{i.submitBy}</h4>
-                            <NavLink to="/petdetail/84" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
+                        return <div key={index} className="flex flex-col bg-slate-600 rounded-lg overflow-hidden justify-between h-full">
+                            <img src={i.image || "/cat1.jpg"} className="object-cover aspect-square overflow-hidden rounded-lg" alt="" />
+                            <h3 className="text-xl px-4 py-2 my-2 text-orange-300">{i.name}</h3>
+                            <h4 className="px-4 py-2">{i.age}</h4>
+                            <h4 className="text-sm px-4 py-2 italic font-semibold">{i.location}</h4>
+                            <h4 className="text-sm px-4 py-2 italic">{i.submitBy}</h4>
+                            <h4 className="text-sm px-4 py-2 italic">Submitted: {i.submitDate}</h4>
+                            <NavLink to={`/petdetail/${i._id}`} className="bg-slate-500 p-4 mt-2 hover:bg-slate-600 text-center hover:text-orange-300 transition-all">View Details</NavLink>
                         </div>
                     })
                 }

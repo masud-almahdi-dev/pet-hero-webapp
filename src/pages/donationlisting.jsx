@@ -1,59 +1,34 @@
 import { NavLink } from "react-router-dom";
+import { useAxiosSecure } from "../auth/Auth";
+import { useEffect, useState } from "react";
 
 const DonationListing = () => {
+    const axiosSecure = useAxiosSecure()
+    const [campaigns,setcampaigns] = useState([])
+    useEffect(()=>{
+        axiosSecure.get('/donations').then(res=>setcampaigns(res.data)).catch(err=>console.log(err))
+    },[])
+    useEffect(()=>{
+    },[campaigns])
     return (
         <div className="flex flex-col">
-            <h2 className="text-2xl font-semibold w-full text-center p-2 py-4">Donation Campaigns</h2>
+            <div className="w-full flex flex-col items-center justify-center">
+                <h2 className="text-2xl mt-2 mb-6">Donation Campaigns</h2>
+            </div>
             {/* Date Descending order */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
-                <div className="flex flex-col justify-between h-full">
-                    <img src="/cat1.jpg" className="object-cover" alt="" />
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <NavLink to="/donationdetail/82" className="bg-slate-500 p-2 hover:bg-slate-600 transition-all">View Details</NavLink>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6 xl:grid-cols-3">
+                {
+                    campaigns.map((i,index)=>{
+                        return <div key={index} className="flex flex-col rounded-lg overflow-hidden bg-slate-500 justify-between h-full">
+                                <img src={i.image || "/cat1.jpg"} className="object-cover aspect-video" alt="" />
+                                <h3 className="text-xl text-orange-300 px-4 py-2">{i.name}</h3>
+                                <h4 className="text-xs px-4 py-2 font-semibold">Max: {i.max}</h4>
+                                <h4 className="text-xs px-4 py-2 italic font-semibold">Donated Amount: {i.amount}</h4>
+                                <h4 className="text-sm px-4 py-2 italic">Submitted: {i.submitDate}</h4>
+                                <NavLink to={`/donationdetail/${i._id}`} className="bg-slate-400 px-4 py-2 text-center hover:bg-slate-500 hover:text-orange-300 transition-all">View Details</NavLink>
+                            </div>
+                    })
+                }
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const Navbar = () => {
                 }
             </div>
             <div className="justify-center items-center xl:flex-[3] lg:flex-[2] hidden lg:flex flex-wrap">
-                <button className="bg-white rounded-lg h-full hover:scale-75 transition-all"><img src="/DM.png" className="w-10 object-cover" alt="" /></button>
+                {/* <button className="bg-white rounded-lg h-full hover:scale-75 transition-all"><img src="/DM.png" className="w-10 object-cover" alt="" /></button> */}
                 <NavLink to="/" className="navlinks">Home</NavLink>
                 <NavLink to="/pets" className="navlinks">Pet Listing</NavLink>
                 <NavLink to="/donations" className="navlinks">Donation campaigns</NavLink>
