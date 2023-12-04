@@ -58,14 +58,14 @@ const PetListing = () => {
             setSelectedOption(searchparams[categ].val)
             axiosSecure.get(`/pets?category=${searchparams[categ].val}`).then(
                 res => {
-                    setpets(res.data)
+                    setpets(res.data.slice().reverse())
                 }
             ).catch(r => console.log(r))
         } else {
             setSelectedOption("All")
             axiosSecure.get(`/pets`).then(
                 res => {
-                    setpets(res.data)
+                    setpets(res.data.slice().reverse())
                 }
             ).catch(r => console.log(r))
         }

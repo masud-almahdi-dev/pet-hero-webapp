@@ -6,7 +6,7 @@ const DonationListing = () => {
     const axiosSecure = useAxiosSecure()
     const [campaigns,setcampaigns] = useState([])
     useEffect(()=>{
-        axiosSecure.get('/donations').then(res=>setcampaigns(res.data)).catch(err=>console.log(err))
+        axiosSecure.get('/donations').then(res=>setcampaigns(res.data.slice().reverse())).catch(err=>console.log(err))
     },[])
     useEffect(()=>{
     },[campaigns])
