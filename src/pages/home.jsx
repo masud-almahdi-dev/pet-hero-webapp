@@ -24,7 +24,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-8 gap-8 bg-white">
-                {categories.map((i,j)=> {
+                {categories.map((i, j) => {
                     return <NavLink key={j} to={`/pets?category=${i.Category}`} className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
                         <img src={i.image} className="object-cover hover:brightness-50 h-full w-full" alt="" />
                         <h3 className="absolute text-2xl pointer-events-none text-black bg-white p-2 rounded-lg">{i.Category}</h3>
@@ -32,7 +32,7 @@ const Home = () => {
                 })}
             </div>
             <div className="w-full overflow-hidden h-[60dvh] flex flex-col justify-center items-center">
-                <img src="/cat1.jpg" className="h-full md:w-full brightness-75 flex object-cover" alt="" />
+                <img src="https://i.ibb.co/WcHy4jQ/bird2.jpg" className="h-full md:w-full brightness-75 flex object-cover" alt="" />
                 <div className="absolute">
                     <h3 className="font-semibold text-white text-2xl mx-4 text-center bg-[#ffce2e28] backdrop-blur-lg px-4 py-2 rounded-md">Make the world a better place by donating for your lovely companions</h3>
                     <h3 className="font-semibold text-white text-2xl mx-4 text-center backdrop-blur-lg px-4 py-2 rounded-md">Come Help Us</h3>
@@ -50,6 +50,26 @@ const Home = () => {
                     <button className=" m-8 bg-white hover:bg-green-700 text-green-700 hover:text-white transition-all p-2 rounded-sm">VISIT DONATIONS</button>
                 </div>
             </div>
+            <div className="w-full overflow-hidden h-[60dvh] bg-white flex flex-col justify-center">
+                <div className=" text-center flex flex-col justify-center items-center gap-2 text-black">
+                    <h2 className="text-3xl md:text-4xl m-8">Join Us</h2>
+                    <h3 className="font-semibold text-white text-2xl mx-6 bg-[#4db2ff] backdrop-blur-lg px-4 py-2 rounded-md">Join Us Today</h3>
+                    <h3 className="font-semibold text-white text-2xl mx-6 bg-[#617fe2]  backdrop-blur-lg px-4 py-2 rounded-md">We help lost pets find their new home,<br />Where they can be happy ever after.</h3>
+                    <NavLink to="/signup" className=" flex m-8 bg-blue-200 hover:bg-blue-700 text-blue-700 hover:text-white transition-all p-2 rounded-md">Join Us</NavLink>
+                </div>
+            </div>
+            <footer className="w-full overflow-hidden h-[20dvh] bg-black flex flex-col items-center justify-center">
+                <div className="w-max flex flex-col justify-center">
+                    <h2 className=" text-[#4db2ff] mx-6 text-6xl w-full font-semibold">#Pet_Hero</h2>
+                    <div className=" text-center flex justify-center items-center gap-2 text-white">
+                        <h3 className="font-semibold text-white text-2xl mx-6 bg-[#4db2ff] backdrop-blur-lg px-4 py-2 rounded-md">copyright - pet_hero - 2023</h3>
+                        <NavLink to="/pets" className=" flex m-8 bg-white hover:bg-blue-700 text-blue-700 hover:text-white transition-all p-2 rounded-sm">Pets</NavLink>
+                        <NavLink to="/donations" className=" flex m-8 bg-white hover:bg-blue-700 text-blue-700 hover:text-white transition-all p-2 rounded-sm">Donations</NavLink>
+                        <NavLink to="/dashboard" className=" flex m-8 bg-white hover:bg-blue-700 text-blue-700 hover:text-white transition-all p-2 rounded-sm">Dashboard</NavLink>
+                        <NavLink to="/signup" className=" flex m-8 bg-white hover:bg-blue-700 text-blue-700 hover:text-white transition-all p-2 rounded-sm">Join Us</NavLink>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }

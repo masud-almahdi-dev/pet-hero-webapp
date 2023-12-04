@@ -23,18 +23,13 @@ const AuthPage = () => {
     }, [location.pathname])
     const axiosSecure = useAxiosSecure()
     const handlelogin = form => {
-        // e.preventDefault();
-        // const form = new FormData(e.currentTarget)
         let mail = form.email
         let pass = form.password
         signIn(mail, pass).then(
             result => {
                 const payload = { email: mail }
                 axiosSecure.post('/jwt', payload)
-                toast.success(<div className='p-4 py-5'>Login Successful<br />loading page in 5 seconds..</div>, toastinfo)
-                setTimeout(() => {
-                    navigate(location?.state ? location.state : "/");
-                }, 5000);
+                toast.success(<div className='p-4 py-5'>Login Successful</div>, toastinfo)
             }
         ).catch(error =>
             toast.error(<div className='p-4 py-5'>{error.message}</div>, toastinfo))
@@ -46,10 +41,7 @@ const AuthPage = () => {
             result => {
                 const payload = { name: result.user.displayName, email: result.user.email, image: result.user.photoURL, datafrom: "google" }
                 axiosSecure.post('/jwtcreate', payload).then(res => console.log(res.data)).catch(err => console.log(err))
-                toast.success(<div className='p-4 py-5'>Login Successful<br />loading page in 5 seconds..</div>, toastinfo)
-                setTimeout(() => {
-                    navigate(location?.state ? location.state : "/");
-                }, 5000);
+                toast.success(<div className='p-4 py-5'>Login Successful</div>, toastinfo)
             }
         ).catch(error => console.log(error))
     }
@@ -64,11 +56,7 @@ const AuthPage = () => {
         createUser(mail, pass).then(res => {
             const payload = { name: username, email: mail, image: picture, datafrom: "user" };
             toast.success(<div className='p-4 py-5'>Registratiom Successful. loading page in 5 seconds..</div>, toastinfo)
-            axiosSecure.post('/jwtcreate', payload).then(() => {
-                setTimeout(() => {
-                    navigate(location?.state ? location.state : "/");
-                }, 5000);
-            }).catch(err => console.log(err))
+            axiosSecure.post('/jwtcreate', payload).then(() => {}).catch(err => console.log(err))
         }).catch(error => toast.error(<div className='p-4 py-5'>{error.message}</div>, toastinfo))
 
     }

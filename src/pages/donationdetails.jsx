@@ -14,6 +14,14 @@ const DonationDetails = () => {
             }
         }).catch(err => { })
     }, [location])
+    const [donationopen, setdonationopen] = useState()
+    const handledonationopen = () => {
+        setdonationopen(!donationopen)
+    }
+    const handledonate = ()=>{
+        let amount = document.querySelector("#amountinput").value
+        axiosSecure.post(`/donate/${donationdata._id}`,{amount}).then(res=>console.log(res.data)).catch(err=>console.log(err))
+    }
     if (donationdata) {
         return (
             <div>
@@ -25,7 +33,11 @@ const DonationDetails = () => {
                         <h4 className="text-sm italic font-semibold">MAXMIUM : {donationdata.max}</h4>
                         <h4 className="text-xs italic">CURRENT AMOUNT : {donationdata.amount}</h4>
                         <h4 className="text-xs italic">DATE : {donationdata.submitDate}</h4>
-                        <button className="mx-auto w-max bg-yellow-200 text-black py-2 px-4 rounded-sm hover:bg-yellow-100">DONATE NOW</button>
+                        {donationopen && <input type="number" min="0" id="amountinput" defaultValue="10" className="bg-white text-black p-2" />}
+                        <div className="flex justify-between">
+                            <button onClick={handledonationopen} className=" w-max bg-yellow-200 text-black py-2 px-4 rounded-sm hover:bg-yellow-100">{donationopen ? "CLOSE" : "DONATE NOW"}</button>
+                            {donationopen && <button onClick={handledonate} className=" w-max bg-yellow-200 text-black py-2 px-4 rounded-sm hover:bg-yellow-100">SEND</button>}
+                        </div>
                         <h4 className="font-semibold">DETAILS : </h4>
                         <p className="my-6">{donationdata.description}</p>
                     </div>
@@ -39,22 +51,6 @@ const DonationDetails = () => {
         );
     }
 
-    return (
-        <div>
-
-            <div>
-                <h2 className="w-full text-center p-4 font-semibold">DONATION DETAILS</h2>
-                <img src="/cat1.jpg" className="object-cover w-full md:w-1/2 mx-auto" alt="" />
-                <div className="p-4 flex flex-col gap-4">
-                    <h3 className="text-xl">Pet Name</h3>
-                    <h4>Maximum Donation Amount</h4>
-                    <h4 className="text-sm italic font-semibold">Donated Amount</h4>
-                    <h4 className="text-sm italic">Submitted Date</h4>
-                    <button className="mx-auto w-max bg-yellow-200 text-black py-2 px-4 rounded-sm hover:bg-yellow-100">DONATE NOW</button>
-                </div>
-            </div>
-        </div>
-    );
 }
 
 export default DonationDetails;

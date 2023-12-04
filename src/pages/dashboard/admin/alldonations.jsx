@@ -8,6 +8,13 @@ const AllDonations = () => {
     useEffect(() => {
         axiosSecure.get("/donations").then(res => {setdonations(res.data)}).catch(err => console.log(err))
     }, [])
+    const handledelete = (id)=>{
+        axiosSecure.get(`/deletedonation/${id}`).then(
+            res=>{
+                console.log(res.data)
+            }
+        ).catch(err=>console.log(err))
+    }
     return (
         <div className="text-white p-6 md:p-10 items-center flex flex-col gap-10">
             All Donations
@@ -26,7 +33,7 @@ const AllDonations = () => {
                             <h4 className="flex-1">{i.submitBy}</h4>
                             <NavLink to={`/donationdetail/${i._id}`} className=" px-4 py-2 bg-slate-400 hover:bg-slate-600 transition-all rounded-md text-center">view</NavLink>
                             <NavLink to={`/dashboard/updatedonation/${i._id}`} className=" px-4 py-2 bg-orange-400 hover:bg-orange-600 transition-all rounded-md text-center">update</NavLink>
-                            <button className=" px-4 py-2 bg-red-500 hover:bg-red-600 transition-all rounded-md text-center">delete</button>
+                            <button onClick={()=>{handledelete(i._id)}} className=" px-4 py-2 bg-red-500 hover:bg-red-600 transition-all rounded-md text-center">delete</button>
                         </div>
                     })
                 }

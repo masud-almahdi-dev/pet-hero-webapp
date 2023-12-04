@@ -8,6 +8,13 @@ const MyAddedPets = () => {
     useEffect(() => {
         axiosSecure.get("/myaddedpets").then(res => setmypets(res.data)).catch(err => console.log(err))
     }, [])
+    const handledelete = (id)=>{
+        axiosSecure.get(`/deletepet/${id}`).then(
+            res=>{
+                console.log(res.data)
+            }
+        ).catch(err=>console.log(err))
+    }
     return (
         <div className="text-white p-6 md:p-10 items-center flex flex-col gap-10">
             My Added Pets
@@ -26,7 +33,7 @@ const MyAddedPets = () => {
                             <h4 className="flex-1">{i.category}</h4>
                             <NavLink to={`/petdetail/${i._id}`} className=" px-4 py-2 bg-slate-400 hover:bg-slate-600 transition-all rounded-md text-center">view</NavLink>
                             <NavLink to={`/dashboard/updatepet/${i._id}`} className=" px-4 py-2 bg-orange-400 hover:bg-orange-600 transition-all rounded-md text-center">update</NavLink>
-                            <button className=" px-4 py-2 bg-red-500 hover:bg-red-600 transition-all rounded-md text-center">delete</button>
+                            <button onClick={()=>{handledelete(i._id)}} className=" px-4 py-2 bg-red-500 hover:bg-red-600 transition-all rounded-md text-center">delete</button>
                         </div>
                     })
                 }

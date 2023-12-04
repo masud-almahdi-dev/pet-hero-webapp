@@ -1,11 +1,20 @@
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useAxiosSecure } from "../../auth/Auth";
 
 const AddPet = () => {
     const [selectedOption, setSelectedOption] = useState('Cat');
     const [categories,setcategories] = useState([])
+    const toastinfo = {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined
+    }
     const axiosSecure = useAxiosSecure()
     const adderform = useFormik({
         initialValues: { name: '', location: '', age: '0', picture: '', description: '', longdetails: '' },
@@ -15,7 +24,14 @@ const AddPet = () => {
                 location: values.location, age: values.age, image: values.picture, description: values.description,
                 longdetails: values.longdetails
             }
-            axiosSecure.post('/addapet',payload).then(res=>console.log(res.data)).catch(err=>console.log(err))
+            axiosSecure.post('/addapet',payload).then(res=>{
+                if(res.data.code){
+                    toast.success(<div className='p-4 py-5'>{res.data.message}</div>, toastinfo)
+                }else{
+                    toast.success(<div className='p-4 py-5'>Adding Successful</div>, toastinfo)
+                }
+            }
+            ).catch(err=>console.log(err))
         },
         validate: values => {
             let errors = {}

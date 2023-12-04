@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
-import { RouterProvider} from "react-router-dom";
+import { Navigate, RouterProvider, useLocation, useNavigate} from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from './layout';
 import Home from './pages/home';
@@ -21,14 +21,17 @@ import Users from './pages/dashboard/admin/users';
 import AllPets from './pages/dashboard/admin/allpets';
 import AllDonations from './pages/dashboard/admin/alldonations';
 import DashboardMain from './pages/dashboard/dashboardmain';
-import { AuthProvider, UserDataProvider } from './auth/Auth';
+import { AuthProvider, UserDataProvider, useAuth, useUserData } from './auth/Auth';
 import AuthPage from './pages/authpage';
 import UpdatePet from './pages/dashboard/updatepet';
 import UpdateDonation from './pages/dashboard/updatedonation';
+import PrivateRoute, { Adminroute } from './PrivateRoute';
+import Errorpage from './errorpage';
 
 const petrouter = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
+    errorElement: <Errorpage/>,
     children:[
       {
         path: "/",
@@ -60,7 +63,7 @@ const petrouter = createBrowserRouter([{
       },
       {
         path: "/dashboard",
-        element: <Dashboard/>,
+        element: <PrivateRoute><Dashboard/></PrivateRoute>,
         children:[
           {
             path: "/dashboard/",
@@ -100,15 +103,15 @@ const petrouter = createBrowserRouter([{
           },
           {
             path: "/dashboard/admin/users",
-            element: <Users/>,
+            element: <Adminroute><Users/></Adminroute>,
           },
           {
             path: "/dashboard/admin/allpets",
-            element: <AllPets/>,
+            element: <Adminroute><AllPets/></Adminroute>,
           },
           {
             path: "/dashboard/admin/alldonations",
-            element: <AllDonations/>,
+            element: <Adminroute><AllDonations/></Adminroute>,
           },
         ]
       },

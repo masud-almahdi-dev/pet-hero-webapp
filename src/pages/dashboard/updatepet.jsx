@@ -51,7 +51,7 @@ const UpdatePet = () => {
             updaterform.values.age = petdata.age
             updaterform.values.picture = petdata.image
             updaterform.values.description = petdata.description
-            updaterform.values.longdetails = petdata.longdetails
+            document.querySelector('#updatepetform textarea').value = petdata.longdetails
             setSelectedOption(petdata.category)
         }
     },[petdata])
