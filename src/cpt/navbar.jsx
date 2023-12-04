@@ -33,7 +33,7 @@ const Navbar = () => {
                 <NavLink to="/donations" className="navlinks">Donation campaigns</NavLink>
                 <NavLink to="/dashboard" className="navlinks">Dashboard</NavLink>
             </div>
-            <div className={`flex lg:flex-[1] px-4 justify-end bg-slate-700 rounded-lg items-center cursor-pointer ${loggedIn && "hover:brightness-110"}`} onClick={handleuserbutton}>
+            <div className={`flex lg:flex-[1] px-4 py-4 justify-end bg-slate-700 rounded-lg items-center cursor-pointer ${loggedIn && "hover:brightness-110"}`} onClick={handleuserbutton}>
                 <div className="flex flex-col text-end justify-center pr-2">
                     <h2 className="text-lg">{userdata.name}</h2>
                     <h4 className="text-sm">{userdata.email}</h4>

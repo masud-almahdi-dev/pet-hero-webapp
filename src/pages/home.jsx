@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAxiosSecure } from "../auth/Auth";
 
 const Home = () => {
+    const axiosSecure = useAxiosSecure()
+    const [categories, setcategories] = useState([])
+    useEffect(() => {
+        axiosSecure.get('/categories').then(
+            res => setcategories(res.data)
+        ).catch(r => console.log(r))
+    }, [])
     return (
         <div className="bg-purple-700 w-full flex flex-col">
             <div className="w-full overflow-hidden h-[60dvh] flex flex-col justify-center">
@@ -15,22 +24,12 @@ const Home = () => {
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-8 gap-8 bg-white">
-                <NavLink className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
-                    <img src="/cat1.jpg" className="object-cover hover:brightness-50 h-full" alt="" />
-                    <h3 className="absolute text-2xl pointer-events-none text-black backdrop-blur-sm p-2 rounded-lg">Cats</h3>
-                </NavLink>
-                <NavLink className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
-                    <img src="/cat1.jpg" className="object-cover hover:brightness-50 h-full" alt="" />
-                    <h3 className="absolute text-2xl pointer-events-none text-black backdrop-blur-sm p-2 rounded-lg">Dogs</h3>
-                </NavLink>
-                <NavLink className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
-                    <img src="/cat1.jpg" className="object-cover hover:brightness-50 h-full" alt="" />
-                    <h3 className="absolute text-2xl pointer-events-none text-black backdrop-blur-sm p-2 rounded-lg">Birds</h3>
-                </NavLink>
-                <NavLink className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
-                    <img src="/cat1.jpg" className="object-cover hover:brightness-50 h-full" alt="" />
-                    <h3 className="absolute text-2xl pointer-events-none text-black backdrop-blur-sm p-2 rounded-lg">Fish</h3>
-                </NavLink>
+                {categories.map((i,j)=> {
+                    return <NavLink key={j} to={`/pets?category=${i.Category}`} className=" rounded-lg overflow-hidden flex aspect-square justify-center items-center">
+                        <img src={i.image} className="object-cover hover:brightness-50 h-full w-full" alt="" />
+                        <h3 className="absolute text-2xl pointer-events-none text-black bg-white p-2 rounded-lg">{i.Category}</h3>
+                    </NavLink>
+                })}
             </div>
             <div className="w-full overflow-hidden h-[60dvh] flex flex-col justify-center items-center">
                 <img src="/cat1.jpg" className="h-full md:w-full brightness-75 flex object-cover" alt="" />
