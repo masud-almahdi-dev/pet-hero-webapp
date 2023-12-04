@@ -23,6 +23,7 @@ import AllDonations from './pages/dashboard/admin/alldonations';
 import DashboardMain from './pages/dashboard/dashboardmain';
 import { AuthProvider, UserDataProvider } from './auth/Auth';
 import AuthPage from './pages/authpage';
+import UpdatePet from './pages/dashboard/updatepet';
 
 const petrouter = createBrowserRouter([{
     path: "/",
@@ -67,6 +68,10 @@ const petrouter = createBrowserRouter([{
           {
             path: "/dashboard/addpet",
             element: <AddPet/>,
+          },
+          {
+            path: "/dashboard/updatepet/:id",
+            element: <UpdatePet/>,
           },
           {
             path: "/dashboard/myaddedpets",

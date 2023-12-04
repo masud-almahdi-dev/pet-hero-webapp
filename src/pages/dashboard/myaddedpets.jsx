@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAxiosSecure } from "../../auth/Auth";
+import { NavLink } from "react-router-dom";
 
 const MyAddedPets = () => {
     const axiosSecure = useAxiosSecure()
@@ -19,11 +20,11 @@ const MyAddedPets = () => {
                 </div>
                 {
                     mypets.map((i, index) => {
-                        return <div className="bg-slate-700 flex justify-between rounded-md p-2 gap-2 w-full">
+                        return <div key={index} className="bg-slate-700 flex justify-between rounded-md p-2 gap-2 w-full">
                             <h4 className="flex-1">{i.name}</h4>
                             <h4 className="flex-1">{i.category}</h4>
-                            <button className=" px-4 py-2 bg-orange-400 rounded-md text-center">update</button>
-                            <button className=" px-4 py-2 bg-red-500 rounded-md text-center">delete</button>
+                            <NavLink to={`/dashboard/updatepet/${i._id}`} className=" px-4 py-2 bg-orange-400 hover:bg-orange-600 transition-all rounded-md text-center">update</NavLink>
+                            <button className=" px-4 py-2 bg-red-500 hover:bg-red-600 transition-all rounded-md text-center">delete</button>
                         </div>
                     })
                 }

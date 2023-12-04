@@ -11,7 +11,7 @@ const Navbar = () => {
         setuseropen(!useropen)
     }
     return (
-        <div className="w-full bg-slate-700 h-24 lg:h-min flex sticky top-0 p-4 text-center justify-between box-border lg:items-center items-start flex-wrap z-20">
+        <div className="w-full bg-slate-700 h-44 lg:h-min flex sticky top-0 p-4 text-center justify-between box-border lg:items-center items-start flex-wrap z-20">
             <div className="flex lg:flex-[1] flex-col bg-slate-800 rounded-lg p-2">
                 <div className="items-center gap-4 lg:flex hidden">
                     <img src="/logo.svg" alt="" className="rounded-lg w-20" />

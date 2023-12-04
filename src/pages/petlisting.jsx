@@ -103,7 +103,7 @@ const PetListing = () => {
                             }
 
                             <h3 className="text-xl px-4 py-2 my-2 text-orange-300">{i.name}</h3>
-                            <h4 className="px-4 py-2">{i.age}</h4>
+                            <h4 className="px-4 py-2">{i.age} years</h4>
                             <h4 className="text-sm px-4 py-2 italic font-semibold">{i.location}</h4>
                             <h4 className="text-sm px-4 py-2 italic">{i.submitBy}</h4>
                             <h4 className="text-sm px-4 py-2 italic">Submitted: {i.submitDate}</h4>

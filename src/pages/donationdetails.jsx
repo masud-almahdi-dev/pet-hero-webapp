@@ -19,7 +19,7 @@ const DonationDetails = () => {
             <div>
                 <div className="p-6 xl:w-2/3 mx-auto">
                     <h2 className="w-full text-center p-4 font-semibold">DONATION DETAILS</h2>
-                    <img src={donationdata.image || "/cat1.jpg"} className="object-cover w-full md:w-1/2 mx-auto" alt="" />
+                    <img src={donationdata.image || "https://i.ibb.co/Rhgbz8B/8f7e9477-4be6-45ae-aa3d-ae4303f8104d.jpg"} className="object-cover aspect-video rounded-lg overflow-hidden w-full md:w-1/2 mx-auto" alt="" />
                     <div className="p-4 flex flex-col gap-4">
                         <h3 className="text-xl">TITLE : {donationdata.name}</h3>
                         <h4 className="text-sm italic font-semibold">MAXMIUM : {donationdata.max}</h4>

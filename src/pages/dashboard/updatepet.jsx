@@ -1,40 +1,70 @@
-import { useState } from "react";
-import { useAxiosSecure } from "../../auth/Auth";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { useAxiosSecure } from "../../auth/Auth";
 
-const CreateCampaign = () => {
+const UpdatePet = () => {
+    const [selectedOption, setSelectedOption] = useState('Cat');
+    const [categories,setcategories] = useState([])
+    const [petdata, setpetdata] = useState(null)
     const axiosSecure = useAxiosSecure()
     const adderform = useFormik({
-        initialValues: { name: '', lastdate: '', max: '0', picture: '', description: '', longdetails: '' },
+        initialValues: { name: '', location: '', age: '0', picture: '', description: '', longdetails: '' },
         onSubmit: values => { 
             let payload = {name: values.name,
-                lastdate: values.lastdate, max: String(values.max), image: values.picture, description: values.description,
+                category: selectedOption,
+                location: values.location, age: values.age, image: values.picture, description: values.description,
                 longdetails: values.longdetails
             }
-            axiosSecure.post('/addacampaign',payload).then(res=>console.log(res.data)).catch(err=>console.log(err))
+            axiosSecure.post(`/updatepet/${petdata._id}`,payload).then(res=>console.log(res.data)).catch(err=>console.log(err))
         },
         validate: values => {
             let errors = {}
             if (!values.name) { errors.name = 'Required' }
-            if (!values.lastdate) { errors.lastdate = 'Required' }
-            let ndate = values.lastdate.split('-')
-            if (ndate.length<3 || ndate.length>3) { errors.lastdate = 'Format: dd-mm-yyyy' }
-            if (parseInt(ndate[0])>0 && parseInt(ndate[0])<=31
-            &&  parseInt(ndate[1])>0 && parseInt(ndate[1])<=12
-            &&  parseInt(ndate[2])>1000 && parseInt(ndate[2])<=3000
-            ){ }else { errors.lastdate = 'follow this format: dd-mm-yyyy' }
-            if (!values.max) { errors.max = 'Required' }
+            if (!values.location) { errors.location = 'Required' }
+            if (!values.age) { errors.age = 'Required' }
             if (!values.description) { errors.description = 'Required' }
             return errors
         }
     })
+    useEffect(() => {
+        axiosSecure.get('/categories').then(
+            res => {
+                setcategories(res.data.filter(i=>i.Category!=="All"))
+            }
+        ).catch(r => console.log(r))
+    }, [])
+    useEffect(() => {
+        const paramid = location.pathname.split('/').at(-1)
+        axiosSecure(`/pet/${paramid}`).then(res => {
+            if (res.data.code) {
+                console.log(res.data.error)
+            } else {
+                setpetdata(res.data)
+            }
+        }).catch(err => { })
+    }, [location])
+    useEffect(()=>{
+        if(petdata?._id){
+            adderform.values.name = petdata.name
+            adderform.values.location = petdata.location
+            adderform.values.age = petdata.age
+            adderform.values.picture = petdata.image
+            adderform.values.description = petdata.description
+            adderform.values.longdetails = petdata.longdetails
+            setSelectedOption(petdata.category)
+        }
+    },[petdata])
+
+    const handlecategChange = (event) => {
+        setSelectedOption(event.target.value);
+    }
 
     return (
         <div>
             <div className="text-white p-6 md:p-10 items-center flex flex-col gap-10">
-                Add Donation Campaign
-                <form onSubmit={adderform.handleSubmit} className="flex flex-col w-full items-center gap-10">
+                Update Pet
+                <form onSubmit={adderform.handleSubmit} id="updatepetform" className="flex flex-col w-full items-center gap-10">
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
                             <label htmlFor="name">NAME</label>
@@ -51,17 +81,28 @@ const CreateCampaign = () => {
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
-                            <label htmlFor="max">MAXIMUM</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="number" min="0" id="max" name="max" onChange={adderform.handleChange} value={adderform.values.max} />
+                            <label htmlFor="picture">CATEGORY</label>
+                            <select className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" id="filtercat" value={selectedOption} onChange={handlecategChange}>
+                                {categories.map((i, index) => {
+                                    return <option key={index} value={i.Category}>{i.Category}</option>
+                                }, [])}
+                            </select>
+
                         </div>
-                        {adderform.errors.max ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.max}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
-                            <label htmlFor="lastdate">LASTDATE</label>
-                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="lastdate" name="lastdate" onChange={adderform.handleChange} value={adderform.values.lastdate} />
+                            <label htmlFor="age">AGE (year)</label>
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="number" min="0" id="age" name="age" onChange={adderform.handleChange} value={adderform.values.age} />
                         </div>
-                        {adderform.errors.lastdate ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.lastdate}</div>:null}
+                        {adderform.errors.age ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.age}</div>:null}
+                    </div>
+                    <div className="flex flex-col gap-2 w-2/3 items-center">
+                        <div className="flex w-full gap-10 justify-end items-center">
+                            <label htmlFor="location">LOCATION</label>
+                            <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="location" name="location" onChange={adderform.handleChange} value={adderform.values.location} />
+                        </div>
+                        {adderform.errors.location ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.location}</div>:null}
                     </div>
                     <div className="flex flex-col gap-2 w-2/3 items-center">
                         <div className="flex w-full gap-10 justify-end items-center">
@@ -77,12 +118,12 @@ const CreateCampaign = () => {
                         </div>
                         {adderform.errors.longdetails ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.longdetails}</div>:null}
                     </div>
-                    <button className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-green-700 transition-all" type="submit">ADD CAMPAIGN + </button>
+                    <button className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-green-700 transition-all" type="submit">ADD + </button>
                 </form>
                 <ToastContainer />
             </div>
         </div>
     );
 }
- 
-export default CreateCampaign;
+
+export default UpdatePet;

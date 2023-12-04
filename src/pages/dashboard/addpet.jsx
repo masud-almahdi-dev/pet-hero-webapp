@@ -12,10 +12,9 @@ const AddPet = () => {
         onSubmit: values => { 
             let payload = {name: values.name,
                 category: selectedOption,
-                location: values.location, age: values.age, picture: values.picture, description: values.description,
+                location: values.location, age: values.age, image: values.picture, description: values.description,
                 longdetails: values.longdetails
             }
-            //console.log(payload)
             axiosSecure.post('/addapet',payload).then(res=>console.log(res.data)).catch(err=>console.log(err))
         },
         validate: values => {
@@ -24,7 +23,6 @@ const AddPet = () => {
             if (!values.location) { errors.location = 'Required' }
             if (!values.age) { errors.age = 'Required' }
             if (!values.description) { errors.description = 'Required' }
-            //if (!values.longdetails){errors.longdetails='Required'}
             return errors
         }
     })
@@ -67,7 +65,6 @@ const AddPet = () => {
                                     return <option key={index} value={i.Category}>{i.Category}</option>
                                 }, [])}
                             </select>
-                            {/* <input className="border-2 border-slate-800/40 text-black w-[75%] px-2 py-1 rounded-md" type="text" id="picture" name="picture" onChange={adderform.handleChange} value={adderform.values.picture} /> */}
 
                         </div>
                     </div>
@@ -99,23 +96,10 @@ const AddPet = () => {
                         </div>
                         {adderform.errors.longdetails ? <div className="bg-orange-300 text-red-900 px-2 w-full text-center font-semibold">{adderform.errors.longdetails}</div>:null}
                     </div>
-                    <button className="bg-green-600 px-4 py-2 text-white rounded-lg " type="submit">ADD + </button>
+                    <button className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-green-700 transition-all" type="submit">ADD + </button>
                 </form>
                 <ToastContainer />
             </div>
-            {/* <Formik
-                initialValues={{ name: "", email: "" }}
-                onSubmit={async (values) => {
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                }}
-            >
-                <Form>
-                    <Field name="name" type="text" />
-                    <Field name="email" type="email" />
-                    <button type="submit">Submit</button>
-                </Form>
-            </Formik> */}
         </div>
     );
 }
