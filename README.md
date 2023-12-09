@@ -1,8 +1,10 @@
 # Pet Hero
 
-A project about pet adoption and care. A website where you can adopt new pets.
+A React webapp about pet adoption and care built using firebase, jwt, tailwind, react-router
 
 Live-Link: https://pet-hero-2023.web.app/
+
+Server-Repo: https://github.com/masud-almahdi-dev/pet-hero-server
 
 ## Features
 
